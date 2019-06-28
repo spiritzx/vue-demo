@@ -1,0 +1,133 @@
+<template>
+  <div class="main">
+    <el-header>
+      <div id="nav">
+        <nav-menu :navArr="navArr"></nav-menu>
+      </div>
+    </el-header>
+    <el-main>
+      <transition name="fade">
+        <router-view class="view"></router-view>
+      </transition>
+    </el-main>
+  </div>
+</template>
+<script>
+import NavMenu from "@/components/nav/NavMenu";
+
+export default {
+  name: "mainPage",
+  components: {
+    NavMenu
+  },
+  data() {
+    return {
+      navArr: [
+        {
+          path: "/",
+          name: "Home"
+        },
+        {
+          path: "/about",
+          name: "about"
+        },
+        {
+          path: "/hold",
+          name: "hold"
+        },
+        {
+          path: "/earth",
+          name: "earth"
+        },
+        {
+          path: "/Child",
+          name: "一级菜单",
+          children: [
+            {
+              path: "/Child/childA",
+              name: "childA"
+            },
+            {
+              path: "/Child/childB",
+              name: "childB"
+            }
+          ]
+        },
+        {
+          path: "/Child",
+          name: "二级菜单",
+          children: [
+            {
+              path: "/Child/childA",
+              name: "childA",
+              children: [
+                {
+                  path: "/Child/childA/childA1",
+                  name: "childA1"
+                },
+                {
+                  path: "/Child/childA/childA2",
+                  name: "childA2"
+                }
+              ]
+            },
+            {
+              path: "/Child/childB",
+              name: "childB"
+            }
+          ]
+        },
+        {
+          path: "/Child",
+          name: "三级菜单",
+          children: [
+            {
+              path: "/Child/childA",
+              name: "childA",
+              children: [
+                {
+                  path: "/Child/childA/childA1",
+                  name: "childA1",
+                  children: [
+                    {
+                      path: "/Child/childA/childA1",
+                      name: "childA1"
+                    },
+                    {
+                      path: "/Child/childA/childA2",
+                      name: "childA2"
+                    }
+                  ]
+                },
+                {
+                  path: "/Child/childA/childA2",
+                  name: "childA2"
+                }
+              ]
+            },
+            {
+              path: "/Child/childB",
+              name: "childB"
+            }
+          ]
+        }
+      ]
+    };
+  },
+  created() {
+    this.$http
+      .getRequest("/mock/api/user", {
+        id: 1
+      })
+      .then(res => {
+        console.log(res);
+      });
+  }
+};
+</script>
+
+<style lang="less" scoped>
+#nav {
+  margin-bottom: 30px;
+}
+</style>
