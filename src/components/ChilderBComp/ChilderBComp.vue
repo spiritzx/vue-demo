@@ -1,11 +1,23 @@
 <template>
   <div>
-    <p>孙子A</p>
+    <h1>孙子B</h1>
+    <p>{{ subMsg }}</p>
   </div>
 </template>
 
 <script>
+import eventBus from "@/eventBus.js";
 export default {
-  name: "childerBComp"
+  name: "childerBComp",
+  data() {
+    return {
+      subMsg: "childB"
+    };
+  },
+  created() {
+    eventBus.$on("changeBFn", val => {
+      this.subMsg = val;
+    });
+  }
 };
 </script>
