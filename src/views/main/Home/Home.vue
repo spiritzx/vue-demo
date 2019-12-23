@@ -1,41 +1,12 @@
 <template>
   <div class="home">
-    <div>{{ $store.state.auth.token }}</div>
-    <!-- <div class="input-item">
-      <input type="number" placeholder="输入" v-model="totalNum" />
-      <button @click="totalNumFn">确认</button>
-    </div>
     <div>
-      <input type="number" placeholder="输入每行最大数量" v-model="rowMaxNum" />
-      <button @click="rowMaxNumFn">确认</button>
-    </div>-->
-    <div class="content">
-      <!-- <div>{{ $store.state.auth.userName }}</div> -->
-      <div @contextmenu.prevent="contextmenu" class="left-side">
-        <div class="item" @click="addElementFn">方法1</div>
-        <div class="item" @click="changeFn">方法2</div>
-        <div class="item">方法3</div>
-        <div class="item">方法4</div>
-      </div>
-      <div class="main">
-        <div
-          v-for="(item, i) in matrix"
-          :key="i"
-          class="wrap"
-          :class="{ 'left-wrap': i % 2 }"
-        >
-          <div v-for="(list, j) in item" :key="j" class="box">
-            <div class="box-list" :class="list.class">
-              <span>{{ list.index }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <context-menu id="context-menu" ref="ctxMenu">
-        <li @click="addFn($event)">option 1</li>
-        <li class="disabled">option 2</li>
-        <li>option 3</li>
-      </context-menu>
+      <contextMenu></contextMenu>
+      <div>parent</div>
+      {{ msg }}
+      {{ watchObj.msg }}
+      <button @click="changeMsgFn">parentChange</button>
+      <childer-comp></childer-comp>
     </div>
   </div>
 </template>
@@ -43,15 +14,30 @@
 <script>
 import twoMatrix from "@/utils/utils.js";
 import contextMenu from "vue-context-menu";
+import ChilderComp from "@/components/ChilderComp/ChilderComp";
 export default {
   name: "home",
-  components: { contextMenu },
+  components: {
+    contextMenu,
+    ChilderComp
+  },
+  provide() {
+    return {
+      msg: this.msg,
+      changeMsgFn: this.changeMsgFn,
+      watchObj: this.watchObj
+    };
+  },
   data() {
     return {
       totalNum: 0,
       rowMaxNum: 0,
       imgArr: [],
-      matrix: []
+      matrix: [],
+      msg: "parentInfo",
+      watchObj: {
+        msg: "watch"
+      }
     };
   },
   methods: {
@@ -90,6 +76,9 @@ export default {
     },
     logo(e) {
       console.log(e);
+    },
+    changeMsgFn() {
+      this.watchObj.msg = "parent";
     }
   },
   created() {
