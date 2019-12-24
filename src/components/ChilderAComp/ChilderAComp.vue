@@ -1,11 +1,13 @@
 <template>
   <div>
-    <p>孙子A</p>
+    <br />
+    <h1>孙子A</h1>
     <p>{{ msg }}</p>
     <p>{{ watchObj.msg }}</p>
     <button @click="changeMsgFn">son a change</button>
     <button @click="changeMsgAFn">son a changeA</button>
     <button @click="eventBusFn">eventBusClick</button>
+    <br />
   </div>
 </template>
 
