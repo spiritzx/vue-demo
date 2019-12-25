@@ -1,3 +1,10 @@
+<!--
+ * @Descripttion: 
+ * @Author: tom-z(spirit108@foxmail.com)
+ * @Date: 2019-12-23 14:38:24
+ * @LastEditors: tom-z(spirit108@foxmail.com)
+ * @LastEditTime: 2019-12-25 09:58:22
+ -->
 <template>
   <div>
     <div class="mask" v-if="isShow">孙子B mask</div>
