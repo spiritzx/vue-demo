@@ -7,6 +7,7 @@
       {{ watchObj.msg }}
       <button @click="changeMsgFn">parentChange</button>
       <childer-comp></childer-comp>
+      <svg-comp></svg-comp>
     </div>
   </div>
 </template>
@@ -15,11 +16,13 @@
 import twoMatrix from "@/utils/utils.js";
 import contextMenu from "vue-context-menu";
 import ChilderComp from "@/components/ChilderComp/ChilderComp";
+import SvgComp from "@/components/Svg/Svg";
 export default {
   name: "home",
   components: {
     contextMenu,
-    ChilderComp
+    ChilderComp,
+    SvgComp
   },
   provide() {
     return {
