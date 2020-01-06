@@ -16,7 +16,7 @@
 import twoMatrix from "@/utils/utils.js";
 import contextMenu from "vue-context-menu";
 import ChilderComp from "@/components/ChilderComp/ChilderComp";
-import SvgComp from "@/components/Svg/Svg";
+import SvgComp from "@/components/SvgComp/SvgComp";
 export default {
   name: "home",
   components: {
